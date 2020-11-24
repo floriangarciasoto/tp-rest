@@ -142,3 +142,19 @@ test@202-13:~/tp-rest$ mosquitto_sub -h 10.202.0.107 -t shellies/shellyplug-s-6A
 ```
 Cela renvoi 'on' ou 'off'.
 On peut donc modifier les scripts en question.
+
+## Partie 3 : Serveur REST
+
+Avant d'installer nginx, il faut désinstaller complètement apache : 
+```bash
+test@202-13:~/tp-rest$ sudo apt remove apache2 --purge
+```
+On peut ensuite l'installer : 
+```bash
+test@202-13:~/tp-rest$ sudo apt install nginx
+```
+On peut donc se rendre sur http://localhost (ne pas oublier de recharger complètement la page avec CTRL + F5) : 
+
+<img src="https://raw.githubusercontent.com/floriangarciasoto/tp-rest/main/images/Capture%20du%202020-11-24%2015-47-03.png"/>
+
+Notre serveur nginx est opérationel.
