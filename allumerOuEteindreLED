@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$(./etatLED)" == "true" ];then
+if [ "$(./etatLED)" == "on" ];then
 	echo "La LED est allumee, il faut donc l'eteindre."
 	./eteindreLED
 else
