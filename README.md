@@ -113,3 +113,32 @@ Hypertext Transfer Protocol
 ```
 Comme on peut le voir, la trame envoyée est de 147 octets.
 Il faut donc 147 octets pour seulement allumer la LED, ce qui est beaucoup d'octets pour seulement réaliser une petite action, on pourrait se passer de beaucoup d'informations ...
+
+## Partie 2 : MQTT
+
+Notre objet est un Shelly de type Plug-s 6A6534, on va pouvoir donc publish à partir de : 
+```
+shellies/shellyplug-s-6A6534/
+```
+A partir de là, il s'agit quasiment de la même arborescance.
+On peut donc allumer la LED comme ceci : 
+```bash
+test@202-13:~/tp-rest$ mosquitto_pub -h 10.202.0.107 -t shellies/shellyplug-s-6A6534/relay/0/command -m "on"
+```
+Et l'éteindre avec : 
+```bash
+test@202-13:~/tp-rest$ mosquitto_pub -h 10.202.0.107 -t shellies/shellyplug-s-6A6534/relay/0/command -m "off"
+```
+Le fait de publier un message sur le sujet shellies/shellyplug-s-6A6534/relay/0/command va permettre à ce que le Shelly prenne en charge la commande 'on' ou 'off'.
+Pour obtenir la consommation de la LED : 
+```bash
+test@202-13:~/tp-rest$ mosquitto_sub -h 10.202.0.107 -t shellies/shellyplug-s-6A6534/relay/0/power -C 1
+52.87
+```
+On précisque que l'on se désabonne dés que l'on a reçu 1 message, la consommation en question.
+Pour obtenir l'état de la LED : 
+```bash
+test@202-13:~/tp-rest$ mosquitto_sub -h 10.202.0.107 -t shellies/shellyplug-s-6A6534/relay/0 -C 1
+```
+Cela renvoi 'on' ou 'off'.
+On peut donc modifier les scripts en question.
