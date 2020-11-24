@@ -1,3 +1,3 @@
 #!/bin/bash
 
-curl --silent http://10.202.255.252/relay/0?turn=off > /dev/null 2>&1
+mosquitto_pub -h 10.202.0.107 -t shellies/shellyplug-s-6A6534/relay/0/command -m "off"
