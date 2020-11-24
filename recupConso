@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo -n $(curl --silent http://10.202.255.252/meter/0 | jq .power)
+echo -n $(mosquitto_sub -h 10.202.0.107 -t shellies/shellyplug-s-6A6534/relay/0/power -C 1)
 echo " James Watt"
