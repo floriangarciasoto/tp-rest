@@ -1,7 +1,11 @@
 #!/bin/bash
 
 if [ "$(./etatLED)" == "true" ];then
+	echo "La LED est allumee, il faut donc l'eteindre."
 	./eteindreLED
 else
+	echo "La LED est eteinte, il faut donc l'allumer."
 	./allumerLED
+	sleep 5
+	echo "Sa consommation est de $(./recupConso)."
 fi
